@@ -199,6 +199,7 @@ def calculate_password(
 - **AC-033**: Given the dial is at 99, When rotated R1, Then it shall point at 0
 - **AC-034**: Given the dial is at 0, When rotated L1, Then it shall point at 99
 - **AC-035**: Given a large rotation distance, When the rotation wraps multiple times, Then all zero crossings shall be counted accurately
+- **AC-036**: Given the dial is at 0, When rotated LEFT by any distance using Click method, Then zero crossings shall only occur after each complete 100-click cycle (crossings = distance // 100), as the first click moves to position 99 (away from 0)
 
 ## 6. Test Automation Strategy
 
