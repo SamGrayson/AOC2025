@@ -32,10 +32,7 @@ def pattern_finder(start, end):
     invalid_ids = []
     for num in range(start, end + 1):
         str_num = str(num).lstrip("0")
-
-        REPEATER = re.compile(r"(.+?)\1+$")
-
-        match = REPEATER.fullmatch(str_num)
+        match = re.fullmatch(r"(.+?)\1+$", str_num)
         if match:
             invalid_ids.append(num)
     return invalid_ids
