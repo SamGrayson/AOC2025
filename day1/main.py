@@ -1,10 +1,7 @@
 import os
-from py_compile import main
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 INPUT_PATH = os.path.join(SCRIPT_DIR, "input.txt")
-
-nums = [n for n in range(0, 100)]
 
 
 def read_input(file_path):

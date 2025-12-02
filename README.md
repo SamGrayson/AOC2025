@@ -15,3 +15,8 @@ Advent of code 2025 - python & agent follow up
 
 - [Python](day1/main.py)
 - [Agent](day1/agent.py)
+
+## [Day 2: Range Overlap](https://adventofcode.com/2025/day/2)
+
+- [Python](day2/main.py)
+- [Agent](day2/agent.py)
