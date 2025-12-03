@@ -20,6 +20,7 @@ def largest_2_volts(bank):
     return max(possibles)
 
 
+# Original recursive solution for part 2
 def largest_12_volts(bank):
     nums = [n for n in bank]
     mem = set()
@@ -61,6 +62,33 @@ def largest_12_volts(bank):
     return max(maxes)
 
 
+# A much more efficient way to do part 2 - rewritten below
+def largest_12_volts_grouped(current_str, required=12):
+    """
+    1. Take each digit and store its index and value as a tuple in a list.
+    2. Sort the list from largest value to smallest.
+    3. Look at each sorted pair and make sure it can be added to the current number by comparing what digits & their index have already been used and the remaining digits in the string.
+    """
+    ordered_bank = []
+    for i, n in enumerate(current_str):
+        ordered_bank.append((i, int(n)))
+    # Sort from largest value to smallest value
+    ordered_bank = sorted(ordered_bank, key=lambda x: x[1], reverse=True)
+    joltage = []
+    previous_index = -1
+    for digit_index in range(required):
+        for i, d in enumerate(ordered_bank):
+            # Farthest index we can use for this digit
+            max_index = len(current_str) - required + digit_index + 1
+            # If this digit's index is valid to use - continue
+            if previous_index < d[0] < max_index:
+                joltage.append(d[1])
+                previous_index = d[0]
+                ordered_bank = ordered_bank[:i] + ordered_bank[i + 1 :]
+                break
+    return int("".join(map(str, joltage)))
+
+
 def main():
     p1_total = 0
     p2_total = 0
@@ -69,7 +97,7 @@ def main():
         res = largest_2_volts(line)
         p1_total += res
     for line in lines:
-        res = largest_12_volts(line)
+        res = largest_12_volts_grouped(line)
         print(f"Line: {line} -> {res}")
         p2_total += res
 
