@@ -1,7 +1,5 @@
 import os
 
-from sqlalchemy import true
-
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 INPUT_PATH = os.path.join(SCRIPT_DIR, "input.txt")
 
