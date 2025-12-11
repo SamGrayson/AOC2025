@@ -50,8 +50,6 @@ def voltage_too_high(curr_voltage, target_voltage):
 
 # Attempt to uze z3
 def p2(steps):
-    min_presses = []
-
     # Example (3) (1,3) (2) (2,3) (0,2) (0,1) {3,5,4,7}
     # buttons 1, 2, 3, 4, 5, 6
     # 1: int('5') + int('6') = 3
@@ -81,6 +79,8 @@ def p2(steps):
     # print(m.eval(b4))
     # print(m.eval(b5))
     # print(m.eval(b6))
+
+    min_presses = []
 
     for _, buttons, target_voltage in steps:
         opt = Optimize()
