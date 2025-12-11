@@ -1,6 +1,7 @@
 import math
 import os
 from shapely.geometry import Polygon, box
+from shapely.prepared import prep
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 INPUT_PATH = os.path.join(SCRIPT_DIR, "input.txt")
@@ -56,6 +57,7 @@ def create_polygon_boundary(coords):
 
 def p2(boundary, distances):
     polygon = Polygon(boundary)
+    prepared_polygon = prep(polygon)  # Much faster for repeated containment checks
 
     for (a, b), d, area in sorted(distances, key=lambda x: x[2], reverse=True):
         # a and b are (x, y) tuples
@@ -65,7 +67,7 @@ def p2(boundary, distances):
             max(a[0], b[0]),  # max x
             max(a[1], b[1]),  # max y
         )
-        if polygon.contains(rect):
+        if prepared_polygon.contains(rect):
             return area
 
     return None
